@@ -125,6 +125,7 @@ function show(data){
 	data = JSON.parse(data);
 	data = data.filter(function(v){return v.Time})
 	data.sort(function(a,b){return a.Time===b.Time?0:a.Time>b.Time?1:-1})
+	data.pop();
 
 	var xdata = [];
 	var ydata = [];
