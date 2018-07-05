@@ -1,9 +1,3 @@
-# go-qps
-qps(Query Per Second), qph(Hour), qpm(Minute)
-
-![image](https://github.com/zengming00/go-qps/raw/master/screenshots/1.jpg)
-
-```go
 package main
 
 import (
@@ -38,7 +32,7 @@ func main() {
 		}
 		w.Write([]byte(s))
 	})
-	// Add a route to get json report, The name is the same as getting the HTML routing, but you need to add the '_json' suffix
+	// Add a route to get json report(for automatic refresh), The name is the same as getting the HTML routing, but you need to add the '_json' suffix
 	http.HandleFunc("/qps_json", func(w http.ResponseWriter, r *http.Request) {
 		// Get the json report
 		bts, err := qps.GetJson()
@@ -53,4 +47,3 @@ func main() {
 		panic(err)
 	}
 }
-```
