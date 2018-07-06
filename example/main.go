@@ -1,14 +1,26 @@
 package main
 
 import (
+	"fmt"
 	"math/rand"
 	"net/http"
+	"os"
 	"time"
 
 	mqps "github.com/zengming00/go-qps"
 )
 
 func main() {
+	fmt.Println(os.Args)
+	http.HandleFunc("/stdout", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintln(os.Stdout, r.FormValue("v"))
+		w.Write([]byte("ok"))
+	})
+	http.HandleFunc("/stderr", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintln(os.Stderr, r.FormValue("v"))
+		w.Write([]byte("ok"))
+	})
+
 	rand.Seed(time.Now().UnixNano())
 
 	// Statistics every second, a total of 3600 data
